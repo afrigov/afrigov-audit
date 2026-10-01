@@ -206,6 +206,127 @@ export const FIXES: Record<string, Fix> = {
     "Every id referenced by ARIA is unique.",
   ),
   "frame-title": fix("Get started", "get-started.html", "Give iframes a title."),
+  "role-img-alt": fix(
+    "Header",
+    "components/header.html",
+    'Elements with role="img" need an aria-label that describes the image, or aria-hidden if decorative.',
+  ),
+  "svg-img-alt": fix(
+    "Header",
+    "components/header.html",
+    'Inline SVGs with role="img" need a title or aria-label; decorative ones get aria-hidden.',
+  ),
+  "input-image-alt": fix(
+    "Button",
+    "components/button.html",
+    "Image buttons need alt text that says what the button does, or use a real button.",
+  ),
+  "object-alt": fix(
+    "Header",
+    "components/header.html",
+    "Embedded objects need a text alternative.",
+  ),
+  "area-alt": fix(
+    "Header",
+    "components/header.html",
+    "Each image-map area needs alt text, or use real links.",
+  ),
+  "aria-valid-attr": fix(
+    "Button",
+    "components/button.html",
+    "Remove misspelt or invented ARIA attributes. Native elements need none.",
+  ),
+  "aria-valid-attr-value": fix(
+    "Button",
+    "components/button.html",
+    "ARIA attributes must reference ids that exist and use allowed values.",
+  ),
+  "aria-roles": fix(
+    "Button",
+    "components/button.html",
+    "Use a valid role, or better, the native element that already has it.",
+  ),
+  "aria-required-parent": fix(
+    "Accordion",
+    "components/accordion.html",
+    "ARIA widget children need their parent role; prefer native elements.",
+  ),
+  "aria-command-name": fix(
+    "Button",
+    "components/button.html",
+    'Anything with role="button" or role="link" needs a name. Use a real button or link.',
+  ),
+  "aria-toggle-field-name": fix(
+    "Checkboxes",
+    "components/checkboxes.html",
+    "Use native checkboxes and radios with visible labels.",
+  ),
+  "aria-tooltip-name": fix(
+    "Text input",
+    "components/text-input.html",
+    "Put help text in a visible hint tied by aria-describedby instead of a tooltip.",
+  ),
+  "aria-progressbar-name": fix(
+    "Alert",
+    "components/alert.html",
+    "Give progress indicators a label, or report progress as text.",
+  ),
+  "aria-meter-name": fix(
+    "Alert",
+    "components/alert.html",
+    "Give meters a label, or report the value as text.",
+  ),
+  "label-content-name-mismatch": fix(
+    "Button",
+    "components/button.html",
+    "The accessible name must contain the visible text.",
+  ),
+  "definition-list": fix(
+    "Summary list",
+    "components/summary-list.html",
+    "A dl contains only dt and dd pairs, optionally wrapped in div.",
+  ),
+  dlitem: fix("Summary list", "components/summary-list.html", "dt and dd belong inside a dl."),
+  "meta-refresh": fix(
+    "Get started",
+    "get-started.html",
+    "Do not auto-refresh or redirect with a meta tag.",
+  ),
+  "html-xml-lang-mismatch": fix(
+    "Language and script",
+    "styles/language.html",
+    "lang and xml:lang must match.",
+  ),
+  "link-in-text-block-style": fix(
+    "Styles",
+    "styles/index.html",
+    "Underline links in text; afrigov never relies on colour alone.",
+  ),
+  "image-redundant-alt": fix(
+    "Header",
+    "components/header.html",
+    "Alt text should not repeat the words next to the image.",
+  ),
+  "landmark-no-duplicate-main": fix(
+    "Get started",
+    "get-started.html",
+    "One main landmark per page.",
+  ),
+  "landmark-main-is-top-level": fix(
+    "Get started",
+    "get-started.html",
+    "main sits directly in body, not inside another landmark.",
+  ),
+  tabindex: fix(
+    "Button",
+    "components/button.html",
+    "Never use tabindex greater than 0; order comes from the document.",
+  ),
+  accesskeys: fix(
+    "Button",
+    "components/button.html",
+    "Access keys must be unique, and are rarely worth having.",
+  ),
   "ag-no-lang": fix("Language and script", "styles/language.html", "Set lang on the html element."),
   "ag-zoom-disabled": fix(
     "Get started",

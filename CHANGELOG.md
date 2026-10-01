@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-02
+
+### Added
+
+- Fix mappings for 25 more axe rules that the first scoreboard run surfaced without one, including role="img" and SVG alt text, invalid ARIA attributes and values, image buttons, definition lists and meta refresh.
+
 ## [0.1.0] - 2026-10-02
 
 First release.
@@ -19,5 +25,6 @@ First release.
 - `--json`, `--all`, `--phone`, `--desktop`, `--fail-under`, `--timeout`, `--no-wcag22`, `--no-color`.
 - Library export: `audit()`, `textReport()`, `jsonReport()` with types.
 
-[Unreleased]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/omoyolab/afrigov-audit/releases/tag/v0.1.0
