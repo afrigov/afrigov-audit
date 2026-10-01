@@ -39,7 +39,7 @@ npx playwright install chromium
 
 ## Why
 
-Most government websites in Africa fail basic accessibility checks. Not because anyone decided they should, but because nobody runs the check. This makes the check one command, in plain words, with the fix next to each failure.
+Most government websites in Africa fail basic accessibility checks. Not because anyone decided they should, but because nobody runs the check. This makes the check one command, with the fix next to each failure.
 
 It pairs with [afrigov](https://github.com/omoyolab/afrigov), the open-source design system for African public services, but it audits any page. You do not need to use afrigov to use this.
 
