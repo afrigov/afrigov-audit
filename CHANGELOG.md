@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-02
+
+### Added
+
+- `--badge <file>` writes the grade and score as a badge: a self-contained `.svg`, or a `.json` shields.io endpoint document. `--label <text>` sets the text on the left. `badgeSvg`, `badgeJson`, `badgeMessage` and `BADGE_COLORS` are exported from the library.
+
 ## [0.1.2] - 2026-10-02
 
 ### Fixed

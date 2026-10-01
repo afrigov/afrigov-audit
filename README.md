@@ -45,16 +45,18 @@ It pairs with [afrigov](https://github.com/omoyolab/afrigov), the open-source de
 
 ## Options
 
-| Option             | What it does                                               |
-| ------------------ | ---------------------------------------------------------- |
-| `--json`           | Full result as JSON, for tooling and dashboards            |
-| `--all`            | Every problem, not just the top five                       |
-| `--phone`          | Test at 375px only                                         |
-| `--desktop`        | Test at 1280px only                                        |
-| `--fail-under <n>` | Exit 1 if the score is below n. For CI.                    |
-| `--timeout <ms>`   | Page load timeout, default 30000                           |
-| `--no-wcag22`      | Skip the WCAG 2.2 AA rules                                 |
-| `--no-color`       | Plain output. `NO_COLOR` in the environment does the same. |
+| Option             | What it does                                                              |
+| ------------------ | ------------------------------------------------------------------------- |
+| `--json`           | Full result as JSON, for tooling and dashboards                           |
+| `--all`            | Every problem, not just the top five                                      |
+| `--phone`          | Test at 375px only                                                        |
+| `--desktop`        | Test at 1280px only                                                       |
+| `--fail-under <n>` | Exit 1 if the score is below n. For CI.                                   |
+| `--badge <file>`   | Write a badge with the grade and score: `.svg`, or `.json` for shields.io |
+| `--label <text>`   | Text on the left of the badge, default "accessibility"                    |
+| `--timeout <ms>`   | Page load timeout, default 30000                                          |
+| `--no-wcag22`      | Skip the WCAG 2.2 AA rules                                                |
+| `--no-color`       | Plain output. `NO_COLOR` in the environment does the same.                |
 
 Exit codes: 0 ran, 1 below `--fail-under`, 2 bad arguments, 3 page could not be loaded, 4 Chromium not installed.
 
@@ -64,6 +66,19 @@ Exit codes: 0 ran, 1 below `--fail-under`, 2 bad arguments, 3 page could not be 
 - run: npx playwright install --with-deps chromium
 - run: npx afrigov-audit https://staging.example.gov.ng/apply --fail-under 90
 ```
+
+## Badges
+
+`--badge` writes the grade and score as a badge, so a README or a status page shows the result of the last audit instead of a number someone typed.
+
+```sh
+npx afrigov-audit https://example.gov.ng/ --badge badges/home.svg
+npx afrigov-audit https://example.gov.ng/ --badge badges/home.json --label "home page"
+```
+
+The `.svg` is self-contained: publish it and link it with an image tag. The `.json` is a [shields.io endpoint](https://shields.io/badges/endpoint-badge) document: host it anywhere public and use `https://img.shields.io/endpoint?url=<address of the json>`. Run the audit on a schedule in CI and the badge stays current. The colour follows the grade, A to F, and the text says the grade and score, so the colour is never the only signal.
+
+From the library: `badgeSvg(result, { label })` and `badgeJson(result, { label })`.
 
 ## What it checks
 

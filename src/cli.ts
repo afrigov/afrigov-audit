@@ -1,7 +1,10 @@
 #!/usr/bin/env node
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, extname } from "node:path";
 import { parseArgs } from "node:util";
 
 import { audit, AuditError } from "./audit.js";
+import { badgeJson, badgeSvg } from "./badge.js";
 import { jsonReport, textReport } from "./report.js";
 import type { ViewportName } from "./types.js";
 import { version } from "./version.js";
@@ -17,6 +20,8 @@ Options
   --phone              Test at phone width only (375px)
   --desktop            Test at desktop width only (1280px)
   --fail-under <n>     Exit with code 1 if the score is below n (for CI)
+  --badge <file>       Write a badge with the grade and score: .svg, or .json for shields.io
+  --label <text>       Text on the left of the badge, default "accessibility"
   --timeout <ms>       Page load timeout, default 30000
   --no-wcag22          Skip the WCAG 2.2 AA rules
   --no-color           Plain output
@@ -28,6 +33,7 @@ Examples
   npx afrigov-audit https://example.go.ke/apply --phone --all
   npx afrigov-audit https://example.gov.gh/ --json > report.json
   npx afrigov-audit https://example.gouv.sn/ --fail-under 75
+  npx afrigov-audit https://example.gov.rw/ --badge badges/home.svg
 
 Exit codes
   0  audit ran (and met --fail-under if given)
@@ -55,6 +61,8 @@ async function main(): Promise<void> {
         phone: { type: "boolean", default: false },
         desktop: { type: "boolean", default: false },
         "fail-under": { type: "string" },
+        badge: { type: "string" },
+        label: { type: "string" },
         timeout: { type: "string" },
         "no-wcag22": { type: "boolean", default: false },
         "no-color": { type: "boolean", default: false },
@@ -114,6 +122,24 @@ async function main(): Promise<void> {
   process.stdout.write(
     (values.json ? jsonReport(result) : textReport(result, { all: values.all, color })) + "\n",
   );
+
+  if (values.badge) {
+    const options = values.label ? { label: values.label } : {};
+    const body =
+      extname(values.badge).toLowerCase() === ".json"
+        ? badgeJson(result, options)
+        : badgeSvg(result, options);
+    try {
+      mkdirSync(dirname(values.badge), { recursive: true });
+      writeFileSync(values.badge, body);
+    } catch (err) {
+      fail(
+        `could not write the badge to ${values.badge}.`,
+        err instanceof Error ? err.message : undefined,
+        2,
+      );
+    }
+  }
 
   if (failUnder !== undefined && result.score < failUnder) {
     process.stderr.write(`afrigov-audit: score ${result.score} is below ${failUnder}\n`);
