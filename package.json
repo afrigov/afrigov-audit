@@ -1,6 +1,6 @@
 {
   "name": "afrigov-audit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Audit any website for accessibility from the command line. Runs axe-core at phone and desktop widths, adds checks for the failures common on government sites, and tells you which afrigov component fixes each one.",
   "keywords": [
     "accessibility",
