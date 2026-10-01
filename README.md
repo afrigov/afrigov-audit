@@ -69,7 +69,7 @@ Exit codes: 0 ran, 1 below `--fail-under`, 2 bad arguments, 3 page could not be 
 
 ## Badges
 
-`--badge` writes the grade and score as a badge, so a README or a status page shows the result of the last audit instead of a number someone typed.
+`--badge` writes the grade and score as a badge for a README or a status page.
 
 ```sh
 npx afrigov-audit https://example.gov.ng/ --badge badges/home.svg
