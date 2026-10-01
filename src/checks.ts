@@ -53,7 +53,8 @@ export async function collectFacts(page: Page): Promise<PageFacts> {
       // Off-screen elements, like a skip link parked at left: -999em, are not targets.
       if (r.right <= 0 || r.bottom <= 0) continue;
       // Links inside running text are exempt under WCAG 2.5.8.
-      if (el.tagName === "A" && el.closest("p, li, td, dd, figcaption, blockquote")) continue;
+      if (el.tagName === "A" && el.closest("p, li, td, th, dd, dt, figcaption, blockquote"))
+        continue;
       interactiveCount += 1;
       if (r.height < 24 || r.width < 24) smallTargets.push(describe(el));
       if (r.height < 44) targetsUnder44 += 1;
