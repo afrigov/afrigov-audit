@@ -6,7 +6,7 @@ import { jsonReport, textReport } from "./report.js";
 import type { ViewportName } from "./types.js";
 import { version } from "./version.js";
 
-const HELP = `afrigov-audit ${version} — accessibility audit for any web page
+const HELP = `afrigov-audit ${version} - accessibility audit for any web page
 
 Usage
   afrigov-audit <url> [options]
