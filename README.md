@@ -106,6 +106,8 @@ Page weight on a phone
 
 Page weight is reported for information and does not change the score, which is about accessibility. In `--json` it is under `viewports[].facts.weight`.
 
+To fix the images it names, [afrigov-images](https://github.com/omoyolab/afrigov-images) makes each one at the sizes the screen needs, as WebP, within afrigov's limits.
+
 ## How the score is calculated
 
 Start at 100. For each distinct failing rule, subtract a weight for its impact, multiplied by the number of affected elements, capped at five:
