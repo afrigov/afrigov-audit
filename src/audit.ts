@@ -2,6 +2,7 @@ import { AxeBuilder } from "@axe-core/playwright";
 import { chromium, type Browser } from "playwright";
 
 import { collectFacts, factsToFindings } from "./checks.js";
+import { watchWeight } from "./weight.js";
 import { fixFor, wcagFromTags } from "./fixes.js";
 import { grade, score, sortFindings, summarise } from "./score.js";
 import type {
@@ -64,6 +65,8 @@ export async function auditViewport(
   });
   const page = await context.newPage();
   const timeout = options.timeout ?? 30_000;
+  // Page weight is measured at phone width, where the reader is most likely paying for the data.
+  const finishWeight = viewport.name === "phone" ? await watchWeight(page) : null;
   try {
     const response = await page.goto(url, { waitUntil: "load", timeout });
     if (!response)
@@ -105,6 +108,11 @@ export async function auditViewport(
     }));
 
     const facts = await collectFacts(page);
+    if (finishWeight) {
+      const weight = await finishWeight();
+      facts.weight = weight;
+      facts.bytes = weight ? weight.totalBytes : null;
+    }
     findings.push(...factsToFindings(facts, viewport.name));
 
     return {

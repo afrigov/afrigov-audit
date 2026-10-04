@@ -48,7 +48,36 @@ export interface PageFacts {
   /** Interactive elements under 44px tall, same exclusion. The afrigov floor. */
   targetsUnder44: number;
   interactiveCount: number;
+  /** Everything the page downloaded, compressed, at phone width. Null where it could not be measured. */
   bytes: number | null;
+  /** What the page downloads and which images are heavier than they need to be. Phone width only. */
+  weight?: PageWeight | null;
+}
+
+export interface HeavyImage {
+  url: string;
+  bytes: number;
+  /** The file's size in pixels, when it is on the page. */
+  width: number | null;
+  height: number | null;
+  /** How wide it is shown, in CSS pixels. */
+  shownWidth: number | null;
+  /** Roughly what it would weigh resized for the screen and saved as WebP. 0 when it is not shown at all. */
+  estimateBytes: number;
+  /** too-large: far more pixels than the screen shows. heavy: over 300 KB at any size. not-shown: downloaded but not on screen when checked, such as a hidden slide. */
+  reason: "too-large" | "heavy" | "not-shown";
+}
+
+export interface PageWeight {
+  totalBytes: number;
+  imageBytes: number;
+  requests: number;
+  images: number;
+  /** The ten heaviest problem images, largest first. */
+  heavyImages: HeavyImage[];
+  heavyCount: number;
+  /** Roughly what fixing the heavy images would save. */
+  possibleSaving: number;
 }
 
 export interface ViewportResult {

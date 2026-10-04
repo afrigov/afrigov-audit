@@ -6,3 +6,4 @@ export { jsonReport, textReport, gradeSentence } from "./report.js";
 export { grade, penalty, score, sortFindings, summarise, WEIGHTS, NODE_CAP } from "./score.js";
 export type * from "./types.js";
 export { version } from "./version.js";
+export { formatBytes, IMAGES_DOC } from "./weight.js";

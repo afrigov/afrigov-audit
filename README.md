@@ -92,6 +92,20 @@ From the library: `badgeSvg(result, { label })` and `badgeJson(result, { label }
 
 Findings from both viewports are merged by rule, so one problem on both widths is one problem in the report.
 
+3. **Page weight on a phone.** What the page downloads at phone width, how much of it is images, and which images are heavier than they need to be: far larger than the screen shows them, over 300 KB at any size, or downloaded without being on screen, such as hidden slides. For each one it gives the size the screen needs. The reader pays for every megabyte, often on a prepaid bundle.
+
+```
+Page weight on a phone
+   8.7 MB in 64 requests, of which images 7.6 MB in 37
+   9 images are heavier than they need to be. Fixing them would save about 6.9 MB.
+   3.1 MB  cardiovascular-care.jpg  downloaded but not on screen, such as a hidden slide; load it only when shown
+   1.4 MB  deputy-minister.png  downloaded but not on screen, such as a hidden slide; load it only when shown
+   186 KB  chief-director.png  399 × 399, shown 328px wide, about 40 KB at that size
+   Fix: Resize images for the screen and save them as WebP. https://omoyolab.github.io/afrigov/styles/images.html
+```
+
+Page weight is reported for information and does not change the score, which is about accessibility. In `--json` it is under `viewports[].facts.weight`.
+
 ## How the score is calculated
 
 Start at 100. For each distinct failing rule, subtract a weight for its impact, multiplied by the number of affected elements, capped at five:

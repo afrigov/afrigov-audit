@@ -6,6 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-03
+
+### Added
+
+- **Page weight on a phone.** The report says what the page downloads at phone width, how much is images, and which images are heavier than they need to be, with the size the screen needs and the total that fixing them would save. It links to afrigov's guidance on images. Page weight does not change the score. In JSON it is `facts.weight`, and `facts.bytes` is now filled in.
+- `formatBytes` is exported.
+
 ## [0.2.0] - 2026-10-02
 
 ### Added
@@ -37,7 +44,8 @@ First release.
 - `--json`, `--all`, `--phone`, `--desktop`, `--fail-under`, `--timeout`, `--no-wcag22`, `--no-color`.
 - Library export: `audit()`, `textReport()`, `jsonReport()` with types.
 
-[Unreleased]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/omoyolab/afrigov-audit/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/omoyolab/afrigov-audit/compare/v0.2.0...v0.3.0
 [0.1.2]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/omoyolab/afrigov-audit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/omoyolab/afrigov-audit/releases/tag/v0.1.0

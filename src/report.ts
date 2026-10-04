@@ -1,4 +1,5 @@
 import type { AuditResult, Finding } from "./types.js";
+import { formatBytes, IMAGES_DOC } from "./weight.js";
 
 export interface ReportOptions {
   /** Show every finding instead of the top five. */
@@ -98,6 +99,38 @@ export function textReport(result: AuditResult, options: ReportOptions = {}): st
     out.push(
       `   Touch targets under 44px at phone width: ${facts.targetsUnder44 === 0 ? "none" : p.yellow(String(facts.targetsUnder44))} of ${facts.interactiveCount}`,
     );
+    out.push("");
+  }
+
+  const weight = result.viewports.find((v) => v.viewport.name === "phone")?.facts.weight;
+  if (weight) {
+    const heavyPage = weight.totalBytes > 1024 * 1024;
+    out.push(p.bold("Page weight on a phone"));
+    out.push(
+      `   ${(heavyPage ? p.yellow : (s: string) => s)(formatBytes(weight.totalBytes))} in ${weight.requests} requests, of which images ${formatBytes(weight.imageBytes)} in ${weight.images}`,
+    );
+    if (weight.heavyCount) {
+      out.push(
+        `   ${weight.heavyCount} image${weight.heavyCount === 1 ? " is" : "s are"} heavier than ${weight.heavyCount === 1 ? "it needs" : "they need"} to be. Fixing ${weight.heavyCount === 1 ? "it" : "them"} would save about ${formatBytes(weight.possibleSaving)}.`,
+      );
+      for (const h of weight.heavyImages.slice(0, options.all ? 10 : 3)) {
+        const name = decodeURIComponent(h.url.split("?")[0]!.split("/").pop() || h.url).slice(
+          0,
+          60,
+        );
+        const detail =
+          h.reason === "not-shown"
+            ? "downloaded but not on screen, such as a hidden slide; load it only when shown"
+            : `${h.width} × ${h.height}, shown ${h.shownWidth}px wide, about ${formatBytes(h.estimateBytes)} at that size`;
+        out.push(`   ${p.yellow(formatBytes(h.bytes))}  ${name}  ${p.dim(detail)}`);
+      }
+      out.push(
+        `   ${p.green("Fix:")} Resize images for the screen and save them as WebP. ${p.cyan(IMAGES_DOC)}`,
+      );
+    } else {
+      out.push(`   No image is heavier than it needs to be.`);
+    }
+    out.push(p.dim("   Page weight is reported for information. It does not change the score."));
     out.push("");
   }
   out.push(
