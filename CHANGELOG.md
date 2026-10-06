@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-06
+
+### Changed
+
+- The fix for each problem links to afrigov's docs at [afrigov.dev](https://afrigov.dev). The code is now in the [afrigov organisation](https://github.com/afrigov) on GitHub.
+
 ## [0.3.0] - 2026-10-03
 
 ### Added
@@ -44,7 +50,8 @@ First release.
 - `--json`, `--all`, `--phone`, `--desktop`, `--fail-under`, `--timeout`, `--no-wcag22`, `--no-color`.
 - Library export: `audit()`, `textReport()`, `jsonReport()` with types.
 
-[Unreleased]: https://github.com/afrigov/afrigov-audit/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/afrigov/afrigov-audit/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/afrigov/afrigov-audit/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/afrigov/afrigov-audit/compare/v0.2.0...v0.3.0
 [0.1.2]: https://github.com/afrigov/afrigov-audit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/afrigov/afrigov-audit/compare/v0.1.0...v0.1.1
