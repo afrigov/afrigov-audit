@@ -9,7 +9,7 @@ const FLOOR = 50 * 1024;
 /** An image this large is reported even when it is shown at its full size. */
 const CEILING = 300 * 1024;
 
-export const IMAGES_DOC = "https://omoyolab.github.io/afrigov/styles/images.html";
+export const IMAGES_DOC = "https://afrigov.dev/styles/images.html";
 
 interface Seen {
   url: string;

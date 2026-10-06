@@ -50,7 +50,7 @@ const f = (id: string, impact: Finding["impact"], nodes = 1): Finding => ({
   viewports: ["phone", "desktop"],
   fix: {
     component: "Colour",
-    url: "https://omoyolab.github.io/afrigov/styles/colour.html",
+    url: "https://afrigov.dev/styles/colour.html",
     advice: "Use the tokens.",
   },
 });

@@ -21,12 +21,12 @@ Top 5 to fix first
 
 1. Pinch zoom is disabled in the viewport meta tag
    critical · 1 element · phone and desktop · WCAG 1.4.4
-   Fix: Remove user-scalable=no and maximum-scale from the viewport meta. https://omoyolab.github.io/afrigov/get-started.html
+   Fix: Remove user-scalable=no and maximum-scale from the viewport meta. https://afrigov.dev/get-started.html
 
 2. Form elements must have labels
    serious · 6 elements · phone and desktop · WCAG 1.3.1, 4.1.2
    e.g. #nin  #email
-   Fix: Every control gets a visible label tied by for/id. https://omoyolab.github.io/afrigov/components/text-input.html
+   Fix: Every control gets a visible label tied by for/id. https://afrigov.dev/components/text-input.html
 
 …
 ```
@@ -101,7 +101,7 @@ Page weight on a phone
    3.1 MB  cardiovascular-care.jpg  downloaded but not on screen, such as a hidden slide; load it only when shown
    1.4 MB  deputy-minister.png  downloaded but not on screen, such as a hidden slide; load it only when shown
    186 KB  chief-director.png  399 × 399, shown 328px wide, about 40 KB at that size
-   Fix: Resize images for the screen and save them as WebP. https://omoyolab.github.io/afrigov/styles/images.html
+   Fix: Resize images for the screen and save them as WebP. https://afrigov.dev/styles/images.html
 ```
 
 Page weight is reported for information and does not change the score, which is about accessibility. In `--json` it is under `viewports[].facts.weight`.

@@ -92,7 +92,7 @@ export function factsToFindings(
       id,
       impact,
       help,
-      helpUrl: fixFor(id)?.url ?? "https://omoyolab.github.io/afrigov",
+      helpUrl: fixFor(id)?.url ?? "https://afrigov.dev",
       wcag,
       nodes,
       examples,

@@ -31,7 +31,7 @@ describe("fixes", () => {
   it("points every fix at the afrigov docs with advice", () => {
     for (const [id, f] of Object.entries(FIXES)) {
       expect(f.url, id).toMatch(
-        /^https:\/\/omoyolab\.github\.io\/afrigov\/[a-z-]+(\/[a-z-]+)?\.html$/,
+        /^https:\/\/afrigov\.dev\/[a-z-]+(\/[a-z-]+)?\.html$/,
       );
       expect(f.advice.length, id).toBeGreaterThan(20);
       expect(f.component.length, id).toBeGreaterThan(2);

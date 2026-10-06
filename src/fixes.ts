@@ -1,6 +1,6 @@
 import type { Fix } from "./types.js";
 
-const DOCS = "https://omoyolab.github.io/afrigov";
+const DOCS = "https://afrigov.dev";
 
 const fix = (component: string, path: string, advice: string): Fix => ({
   component,
