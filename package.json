@@ -15,13 +15,13 @@
   ],
   "license": "MIT",
   "author": "Abimbola Omoyola",
-  "homepage": "https://github.com/omoyolab/afrigov-audit#readme",
+  "homepage": "https://github.com/afrigov/afrigov-audit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/omoyolab/afrigov-audit.git"
+    "url": "git+https://github.com/afrigov/afrigov-audit.git"
   },
   "bugs": {
-    "url": "https://github.com/omoyolab/afrigov-audit/issues"
+    "url": "https://github.com/afrigov/afrigov-audit/issues"
   },
   "type": "module",
   "bin": {

@@ -1,9 +1,9 @@
 # afrigov-audit
 
-**Audit any web page for accessibility from the command line.** Runs axe-core at phone and desktop widths, adds the checks that government sites fail most, scores the page, and tells you which [afrigov](https://github.com/omoyolab/afrigov) component fixes each problem.
+**Audit any web page for accessibility from the command line.** Runs axe-core at phone and desktop widths, adds the checks that government sites fail most, scores the page, and tells you which [afrigov](https://github.com/afrigov/afrigov) component fixes each problem.
 
 [![npm](https://img.shields.io/npm/v/afrigov-audit?color=1f4e79)](https://www.npmjs.com/package/afrigov-audit)
-[![CI](https://github.com/omoyolab/afrigov-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/omoyolab/afrigov-audit/actions/workflows/ci.yml)
+[![CI](https://github.com/afrigov/afrigov-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/afrigov/afrigov-audit/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ```sh
@@ -41,7 +41,7 @@ npx playwright install chromium
 
 Most government websites in Africa fail basic accessibility checks. Not because anyone decided they should, but because nobody runs the check. This makes the check one command, with the fix next to each failure.
 
-It pairs with [afrigov](https://github.com/omoyolab/afrigov), the open-source design system for African public services, but it audits any page. You do not need to use afrigov to use this.
+It pairs with [afrigov](https://github.com/afrigov/afrigov), the open-source design system for African public services, but it audits any page. You do not need to use afrigov to use this.
 
 ## Options
 
@@ -106,7 +106,7 @@ Page weight on a phone
 
 Page weight is reported for information and does not change the score, which is about accessibility. In `--json` it is under `viewports[].facts.weight`.
 
-To fix the images it names, [afrigov-images](https://github.com/omoyolab/afrigov-images) makes each one at the sizes the screen needs, as WebP, within afrigov's limits.
+To fix the images it names, [afrigov-images](https://github.com/afrigov/afrigov-images) makes each one at the sizes the screen needs, as WebP, within afrigov's limits.
 
 ## How the score is calculated
 

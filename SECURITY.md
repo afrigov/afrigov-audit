@@ -5,7 +5,7 @@
 If you find a security issue in afrigov-audit, please do not open a public issue.
 
 Use GitHub's private reporting form:
-https://github.com/omoyolab/afrigov-audit/security/advisories/new
+https://github.com/afrigov/afrigov-audit/security/advisories/new
 
 Or email **xanderabim@gmail.com** with "afrigov-audit security" in the subject.
 

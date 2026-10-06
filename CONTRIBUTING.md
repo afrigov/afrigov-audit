@@ -3,7 +3,7 @@
 ## Setup
 
 ```sh
-git clone https://github.com/omoyolab/afrigov-audit
+git clone https://github.com/afrigov/afrigov-audit
 cd afrigov-audit
 pnpm install
 pnpm exec playwright install chromium

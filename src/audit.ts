@@ -31,7 +31,7 @@ export class AuditError extends Error {
   }
 }
 
-const UA_SUFFIX = `afrigov-audit/${version} (+https://github.com/omoyolab/afrigov-audit)`;
+const UA_SUFFIX = `afrigov-audit/${version} (+https://github.com/afrigov/afrigov-audit)`;
 
 async function launch(): Promise<Browser> {
   try {
