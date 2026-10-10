@@ -152,6 +152,10 @@ pnpm check          # lint, typecheck, format, build, test
 
 Node 20 or newer and pnpm 10. The audit and CLI tests need Chromium.
 
+## How it is made
+
+Built with AI assistance (Claude). Every change is reviewed and decided by the maintainer before it ships.
+
 ## Licence
 
 [MIT](LICENSE) © Abimbola Omoyola and contributors. Not affiliated with any government.
