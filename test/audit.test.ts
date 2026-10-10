@@ -3,7 +3,7 @@ import { pathToFileURL } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { audit, mergeFindings } from "../src/audit.js";
+import { audit, describeNode, mergeFindings } from "../src/audit.js";
 import type { ViewportResult } from "../src/types.js";
 
 const fixture = (name: string) => pathToFileURL(join(import.meta.dirname, "fixtures", name)).href;
@@ -34,6 +34,30 @@ describe("mergeFindings", () => {
   });
 });
 
+describe("describeNode", () => {
+  it("adds the measured colours to a contrast failure", () => {
+    const node = {
+      target: [".btn"],
+      any: [
+        {
+          data: {
+            fgColor: "#06080e",
+            bgColor: "#6d28d9",
+            contrastRatio: 2.1,
+            expectedContrastRatio: "4.5:1",
+          },
+        },
+      ],
+    };
+    expect(describeNode(node)).toBe(".btn: text #06080e on #6d28d9, 2.1:1 (needs 4.5:1)");
+  });
+
+  it("keeps just the selector for other rules", () => {
+    expect(describeNode({ target: ["img.logo"], any: [{ data: null }] })).toBe("img.logo");
+    expect(describeNode({ target: ["iframe", "#x"] })).toBe("iframe #x");
+  });
+});
+
 describe("audit (needs Chromium)", () => {
   it("finds the classic failures on a bad page", async () => {
     const result = await audit(fixture("bad.html"));
@@ -54,6 +78,9 @@ describe("audit (needs Chromium)", () => {
     expect(["D", "F"]).toContain(result.grade);
     expect(result.findings[0]?.impact).toBe("critical");
     expect(result.findings.find((f) => f.id === "label")?.fix?.component).toBe("Text input");
+    expect(result.findings.find((f) => f.id === "color-contrast")?.examples[0]).toMatch(
+      /: text #[0-9a-f]{6} on #[0-9a-f]{6}, [0-9.]+:1 \(needs [0-9.]+:1\)$/,
+    );
     expect(result.viewports).toHaveLength(2);
   }, 90_000);
 

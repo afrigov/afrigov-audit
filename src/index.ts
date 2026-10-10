@@ -1,4 +1,4 @@
-export { audit, AuditError, mergeFindings, VIEWPORTS } from "./audit.js";
+export { audit, AuditError, describeNode, mergeFindings, VIEWPORTS } from "./audit.js";
 export { BADGE_COLORS, badgeJson, badgeMessage, badgeSvg } from "./badge.js";
 export type { BadgeInput, BadgeOptions } from "./badge.js";
 export { FIXES, fixFor, wcagFromTags } from "./fixes.js";

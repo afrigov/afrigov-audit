@@ -102,7 +102,7 @@ export async function auditViewport(
       helpUrl: v.helpUrl,
       wcag: wcagFromTags(v.tags),
       nodes: v.nodes.length,
-      examples: v.nodes.slice(0, 5).map((n) => n.target.join(" ")),
+      examples: v.nodes.slice(0, 5).map(describeNode),
       viewports: [viewport.name],
       fix: fixFor(v.id),
     }));
@@ -139,6 +139,29 @@ export async function auditViewport(
   } finally {
     await context.close();
   }
+}
+
+interface ContrastData {
+  fgColor?: string;
+  bgColor?: string;
+  contrastRatio?: number;
+  expectedContrastRatio?: string;
+}
+
+/**
+ * The element's selector, plus the colours axe measured when it is a contrast
+ * failure. The colours shown are the ones that render, so a white label turned
+ * dark by a stray rule is plain to see.
+ */
+export function describeNode(node: { target: unknown[]; any?: { data?: unknown }[] }): string {
+  const selector = node.target.join(" ");
+  const data = node.any?.find((check) => {
+    const d = check.data as ContrastData | null | undefined;
+    return d?.fgColor && d.bgColor && d.contrastRatio;
+  })?.data as ContrastData | undefined;
+  if (!data) return selector;
+  const needs = data.expectedContrastRatio ? ` (needs ${data.expectedContrastRatio})` : "";
+  return `${selector}: text ${data.fgColor} on ${data.bgColor}, ${data.contrastRatio}:1${needs}`;
 }
 
 /** Merge per-viewport findings by rule id, keeping the worst impact and the union of viewports. */

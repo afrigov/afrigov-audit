@@ -42,7 +42,10 @@ function describeFinding(f: Finding, p: ReturnType<typeof paint>, index: number)
     `${p.bold(`${index}. ${f.help}`)}`,
     `   ${impact} · ${f.nodes} element${f.nodes === 1 ? "" : "s"} · ${where}${wcag}`,
   ];
-  if (f.examples.length) lines.push(`   ${p.dim("e.g. " + f.examples.slice(0, 2).join("  "))}`);
+  // One per line: a contrast example carries its colours and would run on.
+  f.examples
+    .slice(0, 2)
+    .forEach((ex, i) => lines.push(`   ${p.dim((i === 0 ? "e.g. " : "     ") + ex)}`));
   if (f.fix) lines.push(`   ${p.green("Fix:")} ${f.fix.advice} ${p.cyan(f.fix.url)}`);
   else lines.push(`   ${p.dim(f.helpUrl)}`);
   return lines.join("\n");
