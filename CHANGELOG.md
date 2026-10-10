@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-10-10
+
+### Added
+
+- **Contrast failures show their colours.** Each example names the text and background colours axe measured and the ratio, for instance `.btn: text #06080e on #6d28d9, 2.1:1 (needs 4.5:1)`. These are the colours that render, so a label your stylesheet says is white but a stray rule turns dark shows up as dark. The text report puts each example on its own line. `describeNode` is exported. In JSON, contrast examples carry the same text after the selector.
+
 ### Fixed
 
 - **A visually hidden skip link is no longer a "too small" touch target.** A link clipped to nothing or shrunk to 1px (the usual `.sr-only` or `.visually-hidden` recipe) only shows when focused, so it is not measured while hidden.
