@@ -66,6 +66,13 @@ describe("audit (needs Chromium)", () => {
     expect(result.viewports[0]?.facts.targetsUnder44).toBe(0);
   }, 90_000);
 
+  it("finds a visually hidden skip link and does not count it as a small target", async () => {
+    const result = await audit(fixture("sr-only-skip.html"), { viewports: ["phone"] });
+    expect(result.findings.map((f) => f.id)).toEqual([]);
+    expect(result.viewports[0]?.facts.hasSkipLink).toBe(true);
+    expect(result.viewports[0]?.facts.smallTargets).toEqual([]);
+  }, 90_000);
+
   it("rejects an address that is not a URL", async () => {
     await expect(audit("not a url")).rejects.toThrow(/not a valid address/);
   });

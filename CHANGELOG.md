@@ -6,6 +6,11 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- **A visually hidden skip link is no longer a "too small" touch target.** A link clipped to nothing or shrunk to 1px (the usual `.sr-only` or `.visually-hidden` recipe) only shows when focused, so it is not measured while hidden.
+- **The skip link check finds more real skip links.** It used to look only at the first link, and only if it pointed at an id on the page. Now any control before `main` whose text says it skips to the content counts, in English, French, Spanish, Portuguese, German, Arabic or Swahili. This covers a skip link that moves focus with a click handler, and one that comes after a cookie banner, as on GOV.UK. A link to an id on the page still counts when it is one of the first three controls.
+
 ## [0.3.1] - 2026-10-06
 
 ### Changed
