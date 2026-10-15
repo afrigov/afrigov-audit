@@ -32,8 +32,11 @@ Node 20 or newer and pnpm 10.
 ## Releasing (maintainers)
 
 1. Move **Unreleased** in `CHANGELOG.md` under a new version heading with today's date.
-2. `pnpm version <patch|minor|major>` and `git push --follow-tags`.
-3. The release workflow publishes to npm with provenance and creates the GitHub release.
+2. `pnpm version <patch|minor|major> --no-git-tag-version`, then open a pull request with the changelog and the bump. `main` requires the CI checks to pass, so this no longer goes straight to `main`.
+3. Once it is merged, release it either way:
+   - **One click:** Actions → Release → Run workflow, or `gh workflow run release.yml`. The workflow creates the tag from `main` and publishes.
+   - **Tag by hand:** `git tag v1.2.3 && git push origin v1.2.3`.
+4. The release workflow publishes to npm with provenance and creates the GitHub release.
 
 ## Code of conduct
 
